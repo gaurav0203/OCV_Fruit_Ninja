@@ -140,19 +140,25 @@ while running:
 
     elif current_state == instruction_screen:
         win.fill((163, 150, 91))
+        y_offset = 50
+        text_lines = ["Your goal is to destroy as many fruits as possible,if you destroy a",
+                      "fruit you score a point, if you",
+                      "destroy a bomb a life is lost , if your score becomes negative ",
+                      "a life is lost, if you miss a fruit, you score is reduced by 1",
+                      "This game tracks the index finger of your hand,",
+                      "only one finger can be used at this time. You may have to ",
+                      "tweak your ticks and window resolution to get best results ",
+                      "for your computer. ",
+                      ]
         title_font = pygame.font.Font("Pixelify_Sans/PixelifySans-VariableFont_wght.ttf", 18)
-        title_text = title_font.render("Your goal is to destroy as many fruits\n as possible,if you destroy a\n"
-                                       "fruit you score a point, if you\n"
-                                       "destroy a bomb a life is lost \n, if your score becomes negative \n"
-                                       "a life is lost, if you miss a fruit\n, you score is reduced by 1\n"
-                                       "This game tracks the index finger \nof your hand,"
-                                       "only one finger can be used \nat this time. You may have to "
-                                       "tweak your ticks \nand window resolution to get best results \n"
-                                       "for your computer. ", True, score_green)
-        title_rect = title_text.get_rect(center=(win_width // 2, 30))
-        win.blit(title_text, title_rect)
+        for line in text_lines:
+            title_text = title_font.render(line, True, score_green)
+            title_rect = title_text.get_rect(center=(win_width // 2, y_offset))
+            win.blit(title_text, title_rect)
+            y_offset+=30
 
-        return_button_rect = pygame.Rect(win_width // 2 - 75, 250, 150, 50)
+
+        return_button_rect = pygame.Rect(win_width // 2 - 75, 300 , 150, 50)
         pygame.draw.rect(win, (0, 255, 0), return_button_rect)  # Green button
         return_font = pygame.font.Font(None, 20)
         return_text = return_font.render("Start Game", True, (0, 0, 0))
